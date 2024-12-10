@@ -176,6 +176,16 @@ class OrderCompletionSerializer(ModelSerializer):
         return instance
 
 
+class OrderCancelSerializer(ModelSerializer):
+    def update(self, instance, validated_data):
+        if not instance.status in ['yangi', 'jarayonda']:
+            raise ValidationError(
+                "Faqat statusi 'yangi yoki qabul qilingandan keyin bekor qilishingiz mumkin' larni qabul qilishingiz mumkin.")
+        instance.status = 'bekor qilindi'
+        instance.save()
+        return instance
+
+
 class OrderSerializer(ModelSerializer):
     response_message = SerializerMethodField()
 

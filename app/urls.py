@@ -3,7 +3,7 @@ from django.urls import path
 from app.views import MenuListApiView, MenuDetailAPIView, MenuCreateAPIView, MenuUpdateDeleteAPIView, BasketListAPIView, \
     BasketFoodPlusAPIView, BasketFoodMinusAPIView, ProductBasketCreateAPIView, OrderCreateAPIView, OrderListAPIView, \
     OrderAcceptanceView, OrderPreparationView, OrderDeliveryAPIView, OrderTheAboutAPIView, LatitudeLongitudeUpdateView, \
-    PhoneUpdateView, FullnameUpdateView, DeleteBasketView, OrderCompletionView
+    PhoneUpdateView, FullnameUpdateView, DeleteBasketView, OrderCompletionView, OrderCancelView
 
 urlpatterns = [
     # user
@@ -32,6 +32,7 @@ urlpatterns = [
     path('order-preparation/', OrderPreparationView.as_view(), name='preparation'),
     path('order-delivery/', OrderDeliveryAPIView.as_view(), name='delivery'),
     path('order-completion/', OrderCompletionView.as_view(), name='completion'),
+    path('order-cancel/', OrderCancelView.as_view(), name='cancel'),
     path('order/', OrderTheAboutAPIView.as_view(), name='order')
 
 ]

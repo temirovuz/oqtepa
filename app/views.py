@@ -11,7 +11,7 @@ from app.models import Menu, Order, Basket
 from app.serializers import MenuSerializer, MenuDetailSerializer, BasketPlusSerializer, BasketMinusSerializer, \
     BasketSerializer, BasketCreateSerializer, OrderListSerializer, OrderPrepareSerializer, OrderAcceptSerializer, \
     OrderDeliverySerializer, OrderSerializer, LatitudeLongitudeUpdateSerializer, PhoneUpdateSerializer, \
-    UpdateFullnameSerializer, OrderCompletionSerializer
+    UpdateFullnameSerializer, OrderCompletionSerializer, OrderCancelSerializer
 
 
 # ---------------------------------------------------- USER ------------------------------------------------
@@ -210,6 +210,17 @@ class OrderDeliveryAPIView(APIView):
         if serializer.is_valid():
             return Response({"message": "Buyurtma yetkazib berish uchun yolga chiqdi."})
 
+class OrderCancelView(APIView):
+    permission_classes = [IsAuthenticated, IsAdminOrWaiter]
+
+    def patch(self, request, pk):
+        try:
+            order = Order.objects.get(pk=pk)
+        except:
+            return Response({"error": "Bunday Buyurtma mavjud emas."})
+        serializer = OrderCancelSerializer(order, data=request.data, partial=True)
+        if serializer.is_valid():
+            return Response({"message": "Buyurtma bekor qilindi."})
 
 class OrderCompletionView(APIView):
     permission_classes = [IsAuthenticated, IsAdminOrWaiter]

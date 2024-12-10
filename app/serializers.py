@@ -195,7 +195,7 @@ class OrderSerializer(ModelSerializer):
                 'estimated preparation time': check_order_status(obj.updated_at, user_quantity(obj.user))
             }
         elif obj.status == 'yo\'lda':
-            return {"difference": f"{distance(obj.user.latitude, obj.user.longitude)} km" ,
+            return {"difference": f"{distance(obj.user.latitude, obj.user.longitude)} km",
                     'estimated delivery time': check_order_difference(obj.updated_at, obj.user.latitude,
                                                                       obj.user.longitude)
                     }

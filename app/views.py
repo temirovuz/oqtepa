@@ -67,6 +67,7 @@ class MenuCreateAPIView(CreateAPIView):
 class MenuUpdateDeleteAPIView(RetrieveUpdateDestroyAPIView):
     queryset = is_available_food()
     serializer_class = MenuDetailSerializer
+    permission_classes = [IsAuthenticated,IsAdminOrWaiter]
 
 
 # -------------------------------------------------- Basket ----------------------------------------------------- #

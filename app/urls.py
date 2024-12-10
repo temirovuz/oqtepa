@@ -21,8 +21,8 @@ urlpatterns = [
 
     path('basket/', BasketListAPIView.as_view(), name='basket'),
     path('basket-create/', ProductBasketCreateAPIView.as_view(), name='basket-create'),
-    path('plus/', BasketFoodPlusAPIView.as_view(), name='plus'),
-    path('minus/', BasketFoodMinusAPIView.as_view(), name='minus'),
+    path('basket-plus/', BasketFoodPlusAPIView.as_view(), name='plus'),
+    path('basket-minus/', BasketFoodMinusAPIView.as_view(), name='minus'),
     path('basket/clear/', DeleteBasketView.as_view(), name='basket-clear'),
     # Order
 
